@@ -1,0 +1,103 @@
+% x= [x_1, x_2, x_n], x = vector
+% x_1 < x_2 _ x_n
+% diff (x) = [(x_2 - x_1) , (x_3 - x_2), (x_n - x_n-1)]
+
+% diff(A, n, m)
+% A = 
+% n = order of differntiation
+% m = dimension of A, which the diff is preformed
+
+%ex: diff (x (vector), n)
+
+disp(['Example 1'])
+
+L=[1 3 4 6 7 10 15];
+Lf=diff(L) % by default it preforms first order differentiation
+
+disp(['Example 2'])
+disp(['9 elements'])
+ex=diff((1:10).^2, 2) % by default b/c we do not define order, it is first order deriverative
+
+% (4-1), (9-4), (16-9) ... (100 - 81)
+
+% second order differentiation
+% diff(L, 2) = diff(diff(L))
+
+disp(['Example 3'])
+
+A = [ 1 2 3; 4 5 6; 7 8 9]
+
+ex1=diff(A, 1, 1)
+ex2=diff(A, 2, 1)
+ex3=diff(A, 1, 2)
+ex4=diff(A, 2, 2)
+
+disp(['Example 4'])
+
+x=sym('x')
+
+ex5=diff(sin(x^2)) %first order , (dy/dx)
+ex6=diff(sin(x^2), 2) %second order, (d^2y/dx^2)
+
+t=('t')
+ex7=diff(4*x.^2 - 5, 3) %third order diff
+
+disp(['Example 5: Finite Difference Method'])
+
+%review: der(f(x)) = df/dx, deriverative of f with respect to x
+
+% diff(y) = [(y_2 - y_1), (y_3 - y_2), ... (y_n - y_n-1)]
+% diff(x) = [(x_2 - x_1), (x_3 - x_2), ... (x_n - x_n-1)]
+
+% [(y_2 - y_1) / (x_2 - x_1) ... (y_n - y_n-1) / (x_n - x_n-1)]
+
+% slope of the function in a defined domain
+
+x = 1:6;
+y = [2 3 1 5 8 10];
+
+diff_y=diff(y)./diff(x);
+
+x=0:(2*pi)/100:2*pi;
+y=cos(x.^2);
+
+der_y=diff(y)./((2*pi)/100);
+% in this case, x is distributed evenely and you do not to differentiate the x domain
+% the reason is because the interval is chopped up the same into 101 pieces
+
+%plot(x, y, '--', x(2:end), der_y, 'r-,')
+subplot(2,2, 1)
+plot(x(2:end), der_y) %define the x to match the matricies, x is a vector. I defined the points to start from x (2) to x(100)
+
+der_y_exact=-2*x.*sin(x.^2);
+%hold on %uses same figure or window
+subplot(2, 2, 2)
+plot(x, der_y_exact)
+hold on
+subplot(2, 1, 2)
+plot(x(2:end), der_y, x, der_y_exact)
+
+disp(['Example  5.1'])
+
+%f(x)=.15*x.^3-.5*x^2-.25*x+1.2;
+a=[0.15 -0.5 -0.25 1.2]; %write polynominal in a matrix with powers in the same order
+b=polyder(a); %Differentiate a polynominal;
+x_i=0.5;
+exact_der=polyval(b, x_i) % the value of the deriverative at point (n), in this case .5
+delta_x=0.25;
+
+central_der=(polyval(a, x_i+delta_x)-polyval(a, x_i-delta_x))./(2*delta_x)
+
+forward_der=((polyval(a, x_i+delta_x)-polyval(a, x_i))./(delta_x))
+
+backward_der=(polyval(a, x_i)-polyval(a, x_i-delta_x))./(delta_x)
+
+% if delta_x is decreased, the values become more exact
+
+delta_x=.01
+
+central_der_more=(polyval(a, x_i+delta_x)-polyval(a, x_i-delta_x))./(2*delta_x)
+
+forward_der_more=((polyval(a, x_i+delta_x)-polyval(a, x_i))./(delta_x))
+
+backward_der=(polyval(a, x_i)-polyval(a, x_i-delta_x))./(delta_x)

@@ -1,0 +1,7 @@
+function [ our_out ] = ourfunction_1( a )
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+our_out=sin(alpha);
+
+end
+

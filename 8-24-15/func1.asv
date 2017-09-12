@@ -1,0 +1,10 @@
+function [ output1, output2, output3 ] = func1( x, y, z )
+%8-26-15
+%   3 inputs, 2 outputs
+%   output1: x * y
+%   output2: x + y + z
+output1= size(x)
+output2= x*y;
+output3= x+y+z;
+end
+

@@ -7,4 +7,4 @@ This is mainly for personal preservation however it is open to your usage for ex
 
 I will be happy to re-interpret any of the code if you send me a message. Note the date it was created so I may not exactly remember what i was trying to do, however given the homework prompts that are spaced throughout, I will be able to figure it out
 
-Contact me at vnguye34@students.kennesaw.edu
+Contact me at vnguye34@students.kennesaw.edu or by creating an issue
